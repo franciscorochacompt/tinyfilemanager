@@ -8,9 +8,14 @@ $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":false,"hide_Cols":
  * @github https://github.com/prasathmani/tinyfilemanager
  * @link https://tinyfilemanager.github.io
  */
+/**
+* This version adds support for subtitles to video playback.
+* francisco@rocha.com.pt
+* https://github.com/franciscorochacompt/tinyfilemanager/
+*/
 
 //TFM version
-define('VERSION', '2.6');
+define('VERSION', '2.6s');
 
 //Application Title
 define('APP_TITLE', 'Tiny File Manager');
@@ -1879,8 +1884,15 @@ if (isset($_GET['view'])) {
                     // Audio content
                     echo '<p><audio src="' . fm_enc($file_url) . '" controls preload="metadata"></audio></p>';
                 } elseif ($is_video) {
-                    // Video content
-                    echo '<div class="preview-video"><video src="' . fm_enc($file_url) . '" width="640" height="360" controls preload="metadata"></video></div>';
+                    // Caminho e URL do ficheiro VTT
+                    $vtt_file = preg_replace('/\.[^.]+$/', '.vtt', $file_path);
+                    $vtt_url = preg_replace('/\.[^.]+$/', '.vtt', $file_url);
+
+                    echo '<div class="preview-video"><video src="' . fm_enc($file_url) . '" width="640" height="360" controls preload="metadata">';
+                    if (file_exists($vtt_file)) {
+                        echo '<track label="Português" kind="subtitles" srclang="pt" src="' . fm_enc($vtt_url) . '" default>';
+                    }
+                    echo '</video></div>';
                 } elseif ($is_text) {
                     if (FM_USE_HIGHLIGHTJS) {
                         // highlight
@@ -2346,6 +2358,7 @@ fm_show_footer();
 // --- END HTML ---
 
 // Functions
+
 
 /**
  * It prints the css/js files into html
