@@ -62,6 +62,7 @@ To enable/disable authentication set `$use_auth` to true or false.
 - :mag_right: **Search Functionality:** Use `datatable.js` for fast file search and filtering.
 - :file_folder: **Customizable Listings:** Exclude specific folders and files from directory views.
 - :globe_with_meridians: **Multi-language Support:** Translations available in 35+ languages with `translation.json`.
+- :movie_camera: **Subtitles** This version adds support for subtitles to video playback
 - :bangbang: **And Much More!**
 
 ### [Deploy by Docker](https://github.com/prasathmani/tinyfilemanager/wiki/Deploy-by-Docker)
